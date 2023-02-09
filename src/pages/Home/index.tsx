@@ -1,7 +1,8 @@
 import { Header } from '../../components/Header'
 import { MainCard } from '../../components/MainCard'
+import { PostCard } from './components/PostCard'
 import { SearchInput } from './components/SearchInput'
-import { HomeContainer } from './styles'
+import { HomeContainer, PostCardGrid } from './styles'
 
 export function Home() {
   return (
@@ -9,6 +10,13 @@ export function Home() {
       <Header />
       <MainCard />
       <SearchInput />
+      <PostCardGrid>
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+      </PostCardGrid>
     </HomeContainer>
   )
 }
