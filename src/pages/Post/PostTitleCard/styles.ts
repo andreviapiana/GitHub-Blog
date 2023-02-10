@@ -61,6 +61,10 @@ export const Link = styled.a`
   svg {
     color: ${(props) => props.theme.blue};
   }
+
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 export const Links = styled.div`

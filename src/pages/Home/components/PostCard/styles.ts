@@ -17,6 +17,7 @@ export const PostCardContainer = styled.main`
     -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
       both;
     animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    border: 2px solid ${(props) => props.theme['base-label']};
   }
 
   @-webkit-keyframes scale-up-center {
