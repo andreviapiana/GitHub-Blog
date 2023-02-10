@@ -1,4 +1,4 @@
-import { MainCardContainer, Card, Link } from './styles'
+import { ProfileCardContainer, Card, Link } from './styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -8,9 +8,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-export function MainCard() {
+export function ProfileCard() {
   return (
-    <MainCardContainer>
+    <ProfileCardContainer>
       <Card>
         <Link href="https://github.com/andreviapiana">
           GITHUB
@@ -47,6 +47,6 @@ export function MainCard() {
           </div>
         </header>
       </Card>
-    </MainCardContainer>
+    </ProfileCardContainer>
   )
 }

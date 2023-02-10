@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const MainCardContainer = styled.section`
+export const ProfileCardContainer = styled.section`
   display: flex;
 
   width: 86.4rem;

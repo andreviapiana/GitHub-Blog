@@ -1,12 +1,12 @@
-import { MainCard } from '../../components/MainCard'
 import { PostCard } from './components/PostCard'
+import { ProfileCard } from './components/ProfileCard'
 import { SearchInput } from './components/SearchInput'
 import { HomeContainer, PostCardGrid } from './styles'
 
 export function Home() {
   return (
     <HomeContainer>
-      <MainCard />
+      <ProfileCard />
       <SearchInput />
       <PostCardGrid>
         <PostCard />
