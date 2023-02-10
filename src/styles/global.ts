@@ -27,6 +27,7 @@ export const GlobalStyle = createGlobalStyle`
 
   :root {
     font-size: 62.5%;
+    overflow: overlay;
   }
 
   :focus {
