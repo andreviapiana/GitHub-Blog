@@ -20,6 +20,8 @@ export const Card = styled.div`
   border-radius: 10px;
   padding: 3.2rem 4rem;
 
+  width: 100%;
+
   header {
     display: flex;
     align-items: center;

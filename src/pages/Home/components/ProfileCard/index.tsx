@@ -1,4 +1,6 @@
 import { ProfileCardContainer, Card, Link } from './styles'
+import { useEffect, useState } from 'react'
+import { api } from '../../../../lib/axios'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -8,32 +10,71 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
+interface ProfileProps {
+  avatarURL: string
+  bio: string
+  htmlURL: string
+  followers: number
+  login: string
+  name: string
+}
+
 export function ProfileCard() {
+  const [profile, setProfile] = useState<ProfileProps>({
+    avatarURL: '',
+    bio: '',
+    htmlURL: '',
+    followers: 1,
+    login: '',
+    name: '',
+  })
+
+  async function fetchProfile() {
+    const response = await api.get('/users/andreviapiana')
+
+    const {
+      avatar_url: avatarURL,
+      bio,
+      html_url: htmlURL,
+      followers,
+      login,
+      name,
+    } = response.data
+
+    const filteredData = {
+      avatarURL,
+      bio,
+      htmlURL,
+      followers,
+      login,
+      name,
+    }
+
+    setProfile(filteredData)
+  }
+
+  useEffect(() => {
+    fetchProfile()
+  }, [])
+
   return (
     <ProfileCardContainer>
       <Card>
-        <Link href="https://github.com/andreviapiana">
+        <Link href={profile.htmlURL}>
           GITHUB
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
         </Link>
         <header>
           <div className="userImage">
-            <img
-              src="https://github.com/andreviapiana.png"
-              alt="Imagem do Usuário"
-            />
+            <img src={profile.avatarURL} alt="Imagem de Avatar do Usuário" />
           </div>
           <div className="userInfos">
-            <h1>André Viapiana</h1>
-            <span>
-              Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-              viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-              volutpat pulvinar vel mass.
-            </span>
+            <h1>{profile.name}</h1>
+            <span>{profile.bio}</span>
             <section className="userExtraInfos">
               <div>
                 <FontAwesomeIcon icon={faGithub} />
-                cameronwll
+                {profile.login}
               </div>
               <div>
                 <FontAwesomeIcon icon={faBuilding} />
@@ -41,7 +82,7 @@ export function ProfileCard() {
               </div>
               <div>
                 <FontAwesomeIcon icon={faUserGroup} />
-                32 seguidores
+                {profile.followers} seguidores
               </div>
             </section>
           </div>
