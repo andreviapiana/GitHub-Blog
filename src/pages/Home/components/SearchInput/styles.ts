@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const SearchInputContainer = styled.main`
+export const SearchFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -39,5 +39,10 @@ export const StyledInput = styled.input`
 
   &::placeholder {
     color: ${(props) => props.theme['base-label']};
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `
