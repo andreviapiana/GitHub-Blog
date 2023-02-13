@@ -1,22 +1,20 @@
 import { Description, PostCardContainer, Title } from './styles'
+import { PostsProps } from '../..'
 
-export function PostCard() {
+interface PostCardProps {
+  data: PostsProps
+}
+
+export function PostCard({ data }: PostCardProps) {
   return (
     <PostCardContainer>
       <Title>
-        <h3>JavaScript data types and data structures</h3>
+        <h3>{data.title}</h3>
         <span>Há 1 dia</span>
       </Title>
 
       <Description>
-        <p>
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have. These can be used to build other data
-          structures. Wherever possible, comparisons with other languages are
-          drawn.
-        </p>
+        <p>{data.body}</p>
       </Description>
     </PostCardContainer>
   )

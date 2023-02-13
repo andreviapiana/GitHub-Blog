@@ -9,7 +9,12 @@ const searchFormSchema = z.object({
 
 type SearchFormInput = z.infer<typeof searchFormSchema>
 
-export function SearchInput() {
+interface InputSearchProps {
+  postsLength: number
+  fetchPosts: (query?: string) => Promise<void>
+}
+
+export function SearchInput({ postsLength, fetchPosts }: InputSearchProps) {
   const {
     register,
     handleSubmit,
@@ -18,17 +23,16 @@ export function SearchInput() {
     resolver: zodResolver(searchFormSchema),
   })
 
-  async function handleSearchTransactions(data: SearchFormInput) {
+  async function handleSearchPosts(data: SearchFormInput) {
     await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    console.log(data)
+    fetchPosts(data.query)
   }
 
   return (
-    <SearchFormContainer onSubmit={handleSubmit(handleSearchTransactions)}>
+    <SearchFormContainer onSubmit={handleSubmit(handleSearchPosts)}>
       <Title>
         <h3>Publicações</h3>
-        <span>6 publicações</span>
+        <span>{postsLength} publicações</span>
       </Title>
 
       <StyledInput
