@@ -1,16 +1,19 @@
 import { Description, PostCardContainer, Title } from './styles'
 import { PostsProps } from '../..'
 
+import { formatDistanceDate } from '../../../../utils/formatter'
+
 interface PostCardProps {
   data: PostsProps
 }
 
 export function PostCard({ data }: PostCardProps) {
+  const formattedDate = formatDistanceDate(data.created_at)
   return (
     <PostCardContainer>
       <Title>
         <h3>{data.title}</h3>
-        <span>Há 1 dia</span>
+        <span>{formattedDate}</span>
       </Title>
 
       <Description>
