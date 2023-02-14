@@ -17,6 +17,7 @@ export const PostCardContainer = styled.main`
       both;
     animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
     border: 2px solid ${(props) => props.theme['base-label']};
+    cursor: pointer;
   }
 
   @-webkit-keyframes scale-up-center {
@@ -56,6 +57,7 @@ export const Title = styled.div`
     color: ${(props) => props.theme['base-span']};
     font-size: 1.4rem;
     width: 7.5rem;
+    text-align: right;
   }
 `
 

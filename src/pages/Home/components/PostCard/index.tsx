@@ -2,6 +2,7 @@ import { Description, PostCardContainer, Title } from './styles'
 import { PostsProps } from '../..'
 
 import { formatDistanceDate } from '../../../../utils/formatter'
+import { useNavigate } from 'react-router-dom'
 
 interface PostCardProps {
   data: PostsProps
@@ -15,8 +16,14 @@ export function PostCard({ data }: PostCardProps) {
     data.body = data.body.substring(0, 182) + '...'
   }
 
+  const navigate = useNavigate()
+
+  function handleCompletePost() {
+    navigate(`/post/${data.number}`)
+  }
+
   return (
-    <PostCardContainer>
+    <PostCardContainer onClick={handleCompletePost}>
       <Title>
         <h3>{data.title}</h3>
         <span>{formattedDate}</span>
