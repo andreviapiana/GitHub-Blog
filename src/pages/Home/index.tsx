@@ -21,6 +21,7 @@ interface SearchPostsProps {
 
 export function Home() {
   const [posts, setPosts] = useState<PostsProps[]>([])
+
   const postsLength = posts.length
 
   async function fetchPosts(query?: string) {
@@ -34,6 +35,13 @@ export function Home() {
     setPosts(response.data.items)
   }
 
+  let numberOfPostsText: string
+  if (postsLength > 1) {
+    numberOfPostsText = 'publicações'
+  } else {
+    numberOfPostsText = 'publicação'
+  }
+
   useEffect(() => {
     fetchPosts()
   }, [])
@@ -41,7 +49,11 @@ export function Home() {
   return (
     <HomeContainer>
       <ProfileCard />
-      <SearchInput postsLength={postsLength} fetchPosts={fetchPosts} />
+      <SearchInput
+        postsLength={postsLength}
+        fetchPosts={fetchPosts}
+        numberOfPostsText={numberOfPostsText}
+      />
       <PostCardGrid>
         {posts.map((post) => {
           return <PostCard key={post.number} data={post} />

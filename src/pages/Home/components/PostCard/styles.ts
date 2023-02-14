@@ -5,7 +5,6 @@ export const PostCardContainer = styled.main`
   flex-direction: column;
 
   width: 41.6rem;
-  height: 26rem;
 
   background-color: ${(props) => props.theme['base-post']};
 
@@ -48,7 +47,7 @@ export const Title = styled.div`
   line-height: 3.2rem;
 
   h3 {
-    max-width: 28.3rem;
+    max-width: 27.7rem;
     font-size: 2rem;
     color: ${(props) => props.theme['base-title']};
   }
@@ -56,13 +55,14 @@ export const Title = styled.div`
   span {
     color: ${(props) => props.theme['base-span']};
     font-size: 1.4rem;
+    width: 7.5rem;
   }
 `
 
 export const Description = styled.div`
   display: flex;
 
-  max-height: 11.2rem;
+  max-height: 13.5rem;
   line-height: 2.7rem;
 
   overflow: auto;

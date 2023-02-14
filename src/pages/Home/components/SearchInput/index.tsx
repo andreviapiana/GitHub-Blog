@@ -11,10 +11,15 @@ type SearchFormInput = z.infer<typeof searchFormSchema>
 
 interface InputSearchProps {
   postsLength: number
+  numberOfPostsText: string
   fetchPosts: (query?: string) => Promise<void>
 }
 
-export function SearchInput({ postsLength, fetchPosts }: InputSearchProps) {
+export function SearchInput({
+  postsLength,
+  fetchPosts,
+  numberOfPostsText,
+}: InputSearchProps) {
   const {
     register,
     handleSubmit,
@@ -32,7 +37,9 @@ export function SearchInput({ postsLength, fetchPosts }: InputSearchProps) {
     <SearchFormContainer onSubmit={handleSubmit(handleSearchPosts)}>
       <Title>
         <h3>Publicações</h3>
-        <span>{postsLength} publicações</span>
+        <span>
+          {postsLength} {numberOfPostsText}
+        </span>
       </Title>
 
       <StyledInput
