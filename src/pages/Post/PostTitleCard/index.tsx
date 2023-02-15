@@ -9,7 +9,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-export function PostTitleCard() {
+import { formatDistanceDate } from '../../../utils/formatter'
+import { PostsProps } from '../../Home'
+
+interface PostTitleProps {
+  data: PostsProps
+}
+
+export function PostTitleCard({ data }: PostTitleProps) {
   return (
     <PostTitleCardContainer>
       <Card>
@@ -18,25 +25,26 @@ export function PostTitleCard() {
             <FontAwesomeIcon icon={faAngleLeft} />
             VOLTAR
           </Link>
-          <Link href="https://github.com/andreviapiana">
+          <Link href={data.html_url}>
             VER NO GITHUB
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </Link>
         </Links>
         <header>
           <div className="postInfos">
-            <h1>JavaScript data types and data structures</h1>
+            <h1>{data.title}</h1>
             <section className="postExtraInfos">
               <div>
                 <FontAwesomeIcon icon={faGithub} />
-                cameronwll
+                andreviapiana
               </div>
               <div>
                 <FontAwesomeIcon icon={faCalendarDay} />
-                Há 1 dia
+                {data.created_at && formatDistanceDate(data.created_at)}
               </div>
               <div>
-                <FontAwesomeIcon icon={faComment} />5 comentários
+                <FontAwesomeIcon icon={faComment} />
+                {data.comments} comentário(s)
               </div>
             </section>
           </div>
