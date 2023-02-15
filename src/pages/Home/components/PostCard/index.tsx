@@ -9,8 +9,6 @@ interface PostCardProps {
 }
 
 export function PostCard({ data }: PostCardProps) {
-  const formattedDate = formatDistanceDate(data.created_at)
-
   const maximumCharacters = data.body.length > 182
   if (maximumCharacters) {
     data.body = data.body.substring(0, 182) + '...'
@@ -26,7 +24,7 @@ export function PostCard({ data }: PostCardProps) {
     <PostCardContainer onClick={handleCompletePost}>
       <Title>
         <h3>{data.title}</h3>
-        <span>{formattedDate}</span>
+        <span>{data.created_at && formatDistanceDate(data.created_at)}</span>
       </Title>
 
       <Description>
