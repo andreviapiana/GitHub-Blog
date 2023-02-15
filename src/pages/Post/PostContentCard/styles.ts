@@ -16,4 +16,12 @@ export const PostDetailsContainer = styled.div`
 
   overflow: auto;
   overflow: overlay;
+
+  img {
+    width: 100%;
+    border-radius: 2rem;
+  }
+  li {
+    list-style-position: inside;
+  }
 `

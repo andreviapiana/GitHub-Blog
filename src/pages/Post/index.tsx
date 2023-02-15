@@ -25,7 +25,7 @@ export function Post() {
   return (
     <HomeContainer>
       <PostTitleCard data={postData} />
-      <PostContentCard />
+      <PostContentCard data={postData} />
     </HomeContainer>
   )
 }
