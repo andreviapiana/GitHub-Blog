@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
+import { useNavigate } from 'react-router-dom'
 import { formatDistanceDate } from '../../../utils/formatter'
 import { PostsProps } from '../../Home'
 
@@ -17,11 +18,17 @@ interface PostTitleProps {
 }
 
 export function PostTitleCard({ data }: PostTitleProps) {
+  const navigate = useNavigate()
+
+  function handleBack() {
+    navigate(-1)
+  }
+
   return (
     <PostTitleCardContainer>
       <Card>
         <Links>
-          <Link href="/">
+          <Link onClick={handleBack}>
             <FontAwesomeIcon icon={faAngleLeft} />
             VOLTAR
           </Link>
