@@ -4,7 +4,7 @@ import { SearchInput } from './components/SearchInput'
 import { HomeContainer, PostCardGrid } from './styles'
 
 import { api } from '../../lib/axios'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export interface PostsProps {
   number: number
@@ -24,7 +24,7 @@ export function Home() {
 
   const postsLength = posts.length
 
-  async function fetchPosts(query?: string) {
+  const fetchPosts = useCallback(async (query?: string) => {
     const response = await api.get<SearchPostsProps>(
       `search/issues?q=${
         query ? query + '%20' : ''
@@ -33,7 +33,7 @@ export function Home() {
     )
 
     setPosts(response.data.items)
-  }
+  }, [])
 
   let numberOfPostsText: string
   if (postsLength > 1) {
@@ -44,7 +44,7 @@ export function Home() {
 
   useEffect(() => {
     fetchPosts()
-  }, [])
+  }, [fetchPosts])
 
   return (
     <HomeContainer>

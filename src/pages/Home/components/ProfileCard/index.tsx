@@ -1,5 +1,5 @@
 import { ProfileCardContainer, Card, Link } from './styles'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { api } from '../../../../lib/axios'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,7 +29,7 @@ export function ProfileCard() {
     name: '',
   })
 
-  async function fetchProfile() {
+  const fetchProfile = useCallback(async () => {
     const response = await api.get('/users/andreviapiana')
 
     const {
@@ -51,11 +51,11 @@ export function ProfileCard() {
     }
 
     setProfile(filteredData)
-  }
+  }, [])
 
   useEffect(() => {
     fetchProfile()
-  }, [])
+  }, [fetchProfile])
 
   return (
     <ProfileCardContainer>
