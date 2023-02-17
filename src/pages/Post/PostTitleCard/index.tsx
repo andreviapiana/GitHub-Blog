@@ -12,6 +12,8 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import { formatDistanceDate } from '../../../utils/formatter'
 import { PostsProps } from '../../Home'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface PostTitleProps {
   data: PostsProps
@@ -28,32 +30,44 @@ export function PostTitleCard({ data }: PostTitleProps) {
     <PostTitleCardContainer>
       <Card>
         <Links>
-          <Link onClick={handleBack}>
-            <FontAwesomeIcon icon={faAngleLeft} />
-            VOLTAR
-          </Link>
-          <Link href={data.html_url}>
-            VER NO GITHUB
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </Link>
+          {data.title ? (
+            <Link onClick={handleBack}>
+              <FontAwesomeIcon icon={faAngleLeft} />
+              VOLTAR
+            </Link>
+          ) : (
+            <Skeleton wrapper={Link} width={75} />
+          )}
+          {data.title ? (
+            <Link href={data.html_url}>
+              VER NO GITHUB
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+            </Link>
+          ) : (
+            <Skeleton wrapper={Link} width={115} />
+          )}
         </Links>
         <header>
           <div className="postInfos">
-            <h1>{data.title}</h1>
-            <section className="postExtraInfos">
-              <div>
-                <FontAwesomeIcon icon={faGithub} />
-                andreviapiana
-              </div>
-              <div>
-                <FontAwesomeIcon icon={faCalendarDay} />
-                {data.created_at && formatDistanceDate(data.created_at)}
-              </div>
-              <div>
-                <FontAwesomeIcon icon={faComment} />
-                {data.comments} comentário(s)
-              </div>
-            </section>
+            <h1>{data.title || <Skeleton />}</h1>
+            {data.created_at ? (
+              <section className="postExtraInfos">
+                <div>
+                  <FontAwesomeIcon icon={faGithub} />
+                  {data.user.login}
+                </div>
+                <div>
+                  <FontAwesomeIcon icon={faCalendarDay} />
+                  {data.created_at && formatDistanceDate(data.created_at)}
+                </div>
+                <div>
+                  <FontAwesomeIcon icon={faComment} />
+                  {data.comments} comentário(s)
+                </div>
+              </section>
+            ) : (
+              <Skeleton className="postExtraInfos" width={450} />
+            )}
           </div>
         </header>
       </Card>

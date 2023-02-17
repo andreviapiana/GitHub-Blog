@@ -35,6 +35,10 @@ export const Card = styled.div`
     border-radius: 0.8rem;
   }
 
+  .postInfos {
+    width: 100%;
+  }
+
   .postExtraInfos {
     display: flex;
     gap: 2.4rem;
