@@ -1,12 +1,16 @@
 import { PostCard } from './components/PostCard'
 import { ProfileCard } from './components/ProfileCard'
 import { SearchInput } from './components/SearchInput'
-import { HomeContainer, PostCardGrid } from './styles'
+import { HomeContainer, PostCardGrid, SkeletonGrid } from './styles'
 
 import { api } from '../../lib/axios'
 import { useCallback, useEffect, useState } from 'react'
+import { PostCardSkeleton } from './components/PostCardSkeleton'
+import { ProfileCardSkeleton } from './components/ProfileCardSkeleton'
 
 export interface PostsProps {
+  user: any
+  length: number
   number: number
   title: string
   body: string
@@ -48,16 +52,23 @@ export function Home() {
 
   return (
     <HomeContainer>
-      <ProfileCard />
+      {posts.length > 0 ? <ProfileCard /> : <ProfileCardSkeleton />}
       <SearchInput
         postsLength={postsLength}
         fetchPosts={fetchPosts}
         numberOfPostsText={numberOfPostsText}
       />
       <PostCardGrid>
-        {posts.map((post) => {
-          return <PostCard key={post.number} data={post} />
-        })}
+        {posts.length > 0 ? (
+          posts.map((post) => {
+            return <PostCard key={post.number} data={post} />
+          })
+        ) : (
+          <SkeletonGrid>
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+          </SkeletonGrid>
+        )}
       </PostCardGrid>
     </HomeContainer>
   )

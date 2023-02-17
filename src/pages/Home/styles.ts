@@ -17,3 +17,7 @@ export const PostCardGrid = styled.div`
 
   margin-bottom: 5rem;
 `
+
+export const SkeletonGrid = styled.div`
+  display: contents;
+`
